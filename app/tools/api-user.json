@@ -1,0 +1,28 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "user",
+    "collectionId": "1ba818ed-3b24-4c4c-aaf5-bf020be4c40d",
+    "dateExported": "2024-04-25T16:54:59.024Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "3727f5d2-dc2b-4c4b-aa14-c0c029305d49",
+            "colId": "1ba818ed-3b24-4c4c-aaf5-bf020be4c40d",
+            "containerId": "",
+            "name": "http://localhost:9000/api/user",
+            "url": "http://localhost:9000/api/user",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-04-25T16:52:49.158Z",
+            "modified": "2024-04-25T16:52:49.158Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nombre\":\"BECERRA\",\n  \"apellido\": \"RENTERIA\",\n  \"telefono\":261513554,\n  \"id\":1\n}",
+                "form": []
+            }
+        }
+    ],
+    "ref": "nLQuxfVCxgvaHyvO2W3SAk9k-v2pr0hN1ZFEPjETbfyfLuj3XOf9MPe_B-8QLh0kS2j7cxpsJ3bgajwjyjpHnA"
+}

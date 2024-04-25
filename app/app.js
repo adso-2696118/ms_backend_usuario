@@ -1,25 +1,20 @@
 import express from "express";
 import { config } from "dotenv";
-import {messageBrowse} from "./message/browser.js";
+import rutaMain from "./routes/routes.main.js";
+import rutaUser from "./routes/routes.user.js";
+
 config();
 
 const app = express();
+
+// middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended : true }));
+
 app.set("port", process.env.PORT || 3000)
 
-app.get("/", (req, res)=>{
-    res.json({"respuesta": messageBrowse.principal})
-})
-app.get("/home", (req, res)=>{
-    res.json({"home": messageBrowse.home})
-})
-app.get("/galery", (req, res)=>{
-    res.json({"galery": messageBrowse.galery})
-})
-app.get("/about", (req, res)=>{
-    res.json({"about": messageBrowse.about})
-})
-app.get("/contact", (req, res)=>{
-    res.json({"contact": messageBrowse.contact})
-})
+// RUTAS
+app.use("/",rutaMain);
+app.use("/api",rutaUser);
 
 export default app;
