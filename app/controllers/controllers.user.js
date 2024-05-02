@@ -1,4 +1,4 @@
-import { success } from "../message/browser.js";
+import { success, error } from "../message/browser.js";
 import pool from "../config/db.mysql.js";
 
 export const crearUsuario = (req, res)=>{
@@ -7,10 +7,12 @@ export const crearUsuario = (req, res)=>{
     success(req, res, 201,"post Ha ingresado un dato");
 };
 export const mostrarUsuario = async(req, res)=>{
-
-    const respueta = await pool.query("select * from clientes");
-    console.log(respueta);
-    success(req, res, 200, respueta[0]);
+    try {
+        const respueta = await pool.query(" CALL sp_MostrarUsuario(1); ");
+        success(req, res, 200, respueta[0]);
+    } catch (err) {
+        error(req, res, 500, err)
+    }
 };
 export const modificarUsuario = (req, res)=>{
     const dato = req.body;
