@@ -1,7 +1,6 @@
 import express from "express";
 import { config } from "dotenv";
-import rutaMain from "./routes/routes.main.js";
-import rutaUser from "./routes/routes.user.js";
+import ruta from "./routes/index.js";
 
 config();
 
@@ -14,7 +13,6 @@ app.use(express.urlencoded({ extended : true }));
 app.set("port", process.env.PORT || 3000)
 
 // RUTAS
-app.use("/",rutaMain);
-app.use("/api",rutaUser);
+app.use("/", ruta);
 
 export default app;

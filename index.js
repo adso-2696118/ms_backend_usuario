@@ -3,5 +3,5 @@ import { mensajeConsola, menssa } from "./app/message/consola.js";
 
 app.listen(app.get("port"), ()=>{
     mensajeConsola("puertSuccess", 
-    `${menssa.puerto} ${app.get("port")}`)
+    `${menssa.puerto} ${app.get("port")} http://localhost:${app.get("port")}`)
 })

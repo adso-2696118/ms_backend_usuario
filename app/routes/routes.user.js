@@ -1,20 +1,18 @@
 import { Router } from "express";
-import { success } from "../message/browser.js";
+import { crearUsuario, eliminarUsuario, modificarUsuario, mostrarUsuario } from "../controllers/controllers.user.js";
 
 const rutaUser = Router();
 
 // Get sirve para mostrar datos
-rutaUser.get("/user",(req, res)=>{
-    success(req, res, 200,"Conectao con usuario");
-});
+rutaUser.get("/user",mostrarUsuario);
 
 // Post sirve para guardar o crear
-rutaUser.post("/user",(req, res)=>{
+rutaUser.post("/user",crearUsuario);
 
-    const dato = req.body;
-    console.log(dato);
+// modificar
+rutaUser.put("/user",modificarUsuario);
 
-    success(req, res, 200,"post Ha ingresado un dato");
-});
+// para borrar
+rutaUser.delete("/user", eliminarUsuario);
 
 export default rutaUser;

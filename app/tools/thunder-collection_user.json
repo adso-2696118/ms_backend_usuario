@@ -1,0 +1,64 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "user",
+    "collectionId": "207c95b0-7565-4106-a6c8-c345069c791b",
+    "dateExported": "2024-05-02T13:14:09.918Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "376384da-d022-4a7e-9ddb-4582cbac0ae1",
+            "colId": "207c95b0-7565-4106-a6c8-c345069c791b",
+            "containerId": "",
+            "name": "crearUSuario",
+            "url": "http://localhost:9000/api/user",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-04-25T16:56:31.785Z",
+            "modified": "2024-04-25T16:56:31.785Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nombre\":\"BECERRA\",\n  \"apellido\": \"RENTERIA\",\n  \"telefono\":261513554,\n  \"id\":1\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "0be51fec-4d14-4bac-92d7-cb11bc7d9a42",
+            "colId": "207c95b0-7565-4106-a6c8-c345069c791b",
+            "containerId": "",
+            "name": "mostrarUsuario",
+            "url": "http://localhost:9000/api/user",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2024-05-02T13:08:18.013Z",
+            "modified": "2024-05-02T13:08:24.604Z",
+            "headers": []
+        },
+        {
+            "_id": "d1ebffe6-c59a-45b8-b1ac-450d223d254f",
+            "colId": "207c95b0-7565-4106-a6c8-c345069c791b",
+            "containerId": "",
+            "name": "modificarUsuario",
+            "url": "http://localhost:9000/api/user",
+            "method": "PUT",
+            "sortNum": 40000,
+            "created": "2024-05-02T13:10:05.461Z",
+            "modified": "2024-05-02T13:10:12.507Z",
+            "headers": []
+        },
+        {
+            "_id": "d57086e8-5d71-4ee6-aaf8-f6bd8f8df079",
+            "colId": "207c95b0-7565-4106-a6c8-c345069c791b",
+            "containerId": "",
+            "name": "eliminarUsuario",
+            "url": "http://localhost:9000/api/user",
+            "method": "DELETE",
+            "sortNum": 50000,
+            "created": "2024-05-02T13:10:40.935Z",
+            "modified": "2024-05-02T13:10:46.614Z",
+            "headers": []
+        }
+    ],
+    "ref": "hg4eZGDL5lsOnzd0TdJB4Y-T3NCOFhe_aX3cPQIUur6tzslKgQVV3XSqV1oKQhGtcDnXQmd_cNJQfAkirgKFMA"
+}
