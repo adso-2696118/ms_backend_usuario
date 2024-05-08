@@ -1,5 +1,11 @@
 import { Router } from "express";
-import { crearUsuario, eliminarUsuario, listarUsuario, modificarUsuario, mostrarUsuario } from "../controllers/controllers.user.js";
+import { 
+    crearUsuario, 
+    eliminarUsuario, 
+    listarUsuario, 
+    modificarUsuario, 
+    mostrarUsuario,
+    logueoUsuario } from "../controllers/controllers.user.js";
 
 const rutaUser = Router();
 
@@ -17,4 +23,6 @@ rutaUser.put("/user",modificarUsuario);
 // para borrar
 rutaUser.delete("/user", eliminarUsuario);
 
+// para loguearse
+rutaUser.post("/login", logueoUsuario);
 export default rutaUser;
