@@ -2,6 +2,7 @@ import bcrypt from "bcrypt";
 import { success, error } from "../message/browser.js";
 import pool from "../config/db.mysql.js";
 import { config } from "dotenv";
+import jwt from "jsonwebtoken";
 config();
 
 export const crearUsuario = async(req, res)=>{
@@ -70,33 +71,36 @@ export const eliminarUsuario = async(req, res)=>{
         error(req, res, 400, err);
     }
 };
-
-// export const logueoUsuario = async(req, res)=>{
-//     const { usuario, clave } = req.body;
-//     const hash = await bcrypt.hash(clave, 2);
-//     try {
-//         const respuesta = await pool.query(`CALL sp_BuscarUsuario('${usuario}')`);
-//         if(respuesta[0][0]==0){
-//             const error = new Error("Usuario no existe");
-//             res.status(404).json({ error: error.message }); // Enviar respuesta de error al cliente
-//             return;
-//         }
-//         res.json(respuesta[0]);
-//     } catch (error) {
-//         res.json(error);
-//     }
-// }
 export const logueoUsuario = async (req, res) => {
     const { usuario, clave } = req.body;
-    const hash = await bcrypt.hash(clave, 2);
+    // const hash = await bcrypt.hash(clave, 2);
     try {
         const respuesta = await pool.query(`CALL sp_BuscarUsuario('${usuario}')`);
         if (respuesta[0][0] == 0) {
-            throw new Error("Usuario no existe");
+            error(req, res, 404, "Usuario no existe");
+            return;
         }
-        res.json(respuesta[0]);
-    } catch (error) {
-        console.error("Error en el servidor:", error);
-        res.status(500).json({ error: "Error en el servidor, por favor inténtalo de nuevo más tarde" });
+        const match = await bcrypt.compare(clave, respuesta[0][0][0].CLAVE);
+        if(!match){
+            error(req, res, 401, "Clave errada");
+            return;
+        }
+
+        let payload = {
+            "usuario": usuario,
+            "nombre" : respuesta[0][0][0].NOMBRE
+        }; 
+        let token = await jwt.sign(
+            payload, 
+            process.env.TOKEN_PRIVATEKEY,
+            {
+                expiresIn : process.env.TOKEN_EXPIRES_IN
+            });
+
+        success(req, res, 200, {token});
+
+
+    } catch (e) {
+        error(req, res, 500, "Error en el servidor, por favor inténtalo de nuevo más tarde");
     }
 }
