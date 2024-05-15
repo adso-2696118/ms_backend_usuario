@@ -22,7 +22,7 @@ rutaUser.post("/user", verifyToken, crearUsuario);
 rutaUser.put("/user",verifyToken, modificarUsuario);
 
 // para borrar
-rutaUser.delete("/user",verifyToken,eliminarUsuario);
+rutaUser.delete("/user",verifyToken, eliminarUsuario);
 
 // para loguearse
 rutaUser.post("/login", logueoUsuario);
