@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon index.js --exec babel-node",
     "start": "node index.js",
-    "build": "babel app --out-dir dist"
+    "build": "babel app --out-dir dist",
+    "swagger":"node ./app/tools/swagger.js"
   },
   "keywords": [],
   "author": "",
@@ -18,7 +19,8 @@
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.9.7",
-    "swagger": "^0.7.5"
+    "swagger-autogen": "^2.23.7",
+    "swagger-ui-express": "^5.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.24.5",
