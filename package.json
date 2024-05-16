@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js --exec babel-node",
-    "start": "node index.js",
+    "dev": "nodemon app/index.js --exec babel-node",
+    "start": "node dist/index.js",
     "build": "babel app --out-dir dist",
     "swagger":"node ./app/tools/swagger.js"
   },

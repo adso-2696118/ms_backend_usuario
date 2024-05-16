@@ -1,5 +1,5 @@
-import app from "./app/app.js";
-import { mensajeConsola, menssa } from "./app/message/consola.js";
+import app from "./app.js";
+import { mensajeConsola, menssa } from "./message/consola.js";
 
 app.listen(app.get("port"), ()=>{
     mensajeConsola("puertSuccess", 
