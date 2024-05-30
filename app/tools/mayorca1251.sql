@@ -21,31 +21,31 @@ SET time_zone = "+00:00";
 -- Base de datos: `mayorca1251`
 --
 
-DELIMITER $$
+DELIMITER //
 --
 -- Procedimientos
 --
-DROP PROCEDURE IF EXISTS `sp_BuscarUsuario`$$
-CREATE DEFINER=`mayorca1251_root`@`%` PROCEDURE `sp_BuscarUsuario` (IN `_USUARIO` VARCHAR(100))   BEGIN
+DROP PROCEDURE IF EXISTS `sp_BuscarUsuario`//
+CREATE PROCEDURE `sp_BuscarUsuario` (IN `_USUARIO` VARCHAR(100))   BEGIN
 
 SELECT USUARIO, CLAVE FROM usuario where USUARIO = _USUARIO;
 
-END$$
+END//
 
-DROP PROCEDURE IF EXISTS `sp_CrearUsuario`$$
-CREATE DEFINER=`mayorca1251_root`@`%` PROCEDURE `sp_CrearUsuario` (IN `_NOMBRE` VARCHAR(100), IN `_USUARIO` VARCHAR(100), IN `_CLAVE` VARCHAR(500))   BEGIN
+DROP PROCEDURE IF EXISTS `sp_CrearUsuario`//
+CREATE PROCEDURE `sp_CrearUsuario` (IN `_NOMBRE` VARCHAR(100), IN `_USUARIO` VARCHAR(100), IN `_CLAVE` VARCHAR(500))   BEGIN
 
 INSERT INTO usuario (nombre, USUARIO, CLAVE) VALUES
 (_NOMBRE, _USUARIO, _CLAVE);
 
-END$$
+END//
 
-DROP PROCEDURE IF EXISTS `sp_ListarUsuario`$$
-CREATE DEFINER=`mayorca1251_root`@`%` PROCEDURE `sp_ListarUsuario` ()   BEGIN
+DROP PROCEDURE IF EXISTS `sp_ListarUsuario`//
+CREATE PROCEDURE `sp_ListarUsuario` ()   BEGIN
 
 SELECT * FROM usuario;
 
-END$$
+END//
 
 DELIMITER ;
 
