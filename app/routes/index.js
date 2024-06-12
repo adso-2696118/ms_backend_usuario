@@ -5,6 +5,10 @@ import swaggerUi from 'swagger-ui-express';
 import swaggerFile from "../tools/swagger-output.json";
 // import swaggerFile from '../tools/swagger-output.json' assert { type: "json" };
 
+/**
+ * Esta es la ruta de mi proyecto
+ * @type {object}
+ */
 const ruta = Router();
 
 ruta.use("/",rutaMain);

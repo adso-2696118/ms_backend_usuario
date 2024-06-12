@@ -1,0 +1,10 @@
+{
+    "source":{
+        "include":["app"],
+        "exclude":["node_modules"]
+    },
+    "opts":{
+        "recurse":true,
+        "destination":"./docs"
+    }
+}

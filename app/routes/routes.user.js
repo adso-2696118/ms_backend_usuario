@@ -16,7 +16,7 @@ rutaUser.get("/user/:id",mostrarUsuario);
 rutaUser.get("/user", listarUsuario);
 
 // Post sirve para guardar o crear
-rutaUser.post("/user", verifyToken, crearUsuario);
+rutaUser.post("/user", crearUsuario);
 
 // modificar
 rutaUser.put("/user",verifyToken, modificarUsuario);
