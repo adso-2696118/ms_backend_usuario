@@ -5,7 +5,8 @@ import {
     listarUsuario, 
     modificarUsuario, 
     mostrarUsuario,
-    logueoUsuario } from "../controllers/controllers.user.js";
+    logueoUsuario, 
+    validarToken} from "../controllers/controllers.user.js";
 import { verifyToken } from "../middlewares/oauth.js";
 
 const rutaUser = Router();
@@ -26,4 +27,8 @@ rutaUser.delete("/user",verifyToken, eliminarUsuario);
 
 // para loguearse
 rutaUser.post("/login", logueoUsuario);
+
+//para validar el token
+rutaUser.post("/oauth", verifyToken, validarToken);
+
 export default rutaUser;

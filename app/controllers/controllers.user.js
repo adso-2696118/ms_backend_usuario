@@ -18,7 +18,7 @@ config();
 const crearUsuario = async(req, res)=>{
     //captura el nombre del usuario
     const nombre = req.body.nombre;
-    
+    console.log(req.body);
     const usuario = req.body.usuario;
     const claveSinCifrar = req.body.clave;
     try {
@@ -57,8 +57,8 @@ const mostrarUsuario = async(req, res)=>{
  */
 const listarUsuario =async(req, res)=>{
     try {
-        const respueta = await pool.query(`CALL sp_ListarUsuario();`);
-        success(req, res, 200, respueta[0]);
+        const respuesta = await pool.query(`CALL sp_ListarUsuario();`);
+        success(req, res, 200, respuesta[0]);
     } catch (err) {
         error(req, res, 500, err)
     }
@@ -73,8 +73,9 @@ const modificarUsuario = async(req, res)=>{
     const nombre = req.body.nombre;
     const usuario = req.body.usuario;
     const claveSinCifrar = req.body.clave;
-    const clave = claveSinCifrar;
     try {
+        const hash = await bcrypt.hash(claveSinCifrar, 2);
+        const clave = hash;
         const respueta = await pool.query(`CALL sp_ModificarUsuario(${id}, '${nombre}', '${usuario}', '${clave}');`);
         if (respueta[0].affectedRows == 1){
             success(req, res, 201,"Usuario modificado:"+ usuario);
@@ -143,11 +144,15 @@ const logueoUsuario = async (req, res) => {
     }
 }
 
+const validarToken = (req, res) => {
+    success(req, res, 200, {"token":"El token es valido"});
+}
 export {
     crearUsuario,
     mostrarUsuario,
     listarUsuario,
     modificarUsuario,
     eliminarUsuario,
-    logueoUsuario
+    logueoUsuario,
+    validarToken
 }
