@@ -8,6 +8,8 @@ import { success, error } from "../message/browser.js";
 import pool from "../config/db.mysql.js";
 import { config } from "dotenv";
 import jwt from "jsonwebtoken";
+import nodemailer from "nodemailer";
+import { mensajeConsola } from "../message/consola.js";
 config();
 
 /**
@@ -18,7 +20,6 @@ config();
 const crearUsuario = async(req, res)=>{
     //captura el nombre del usuario
     const nombre = req.body.nombre;
-    console.log(req.body);
     const usuario = req.body.usuario;
     const claveSinCifrar = req.body.clave;
     try {
@@ -26,6 +27,13 @@ const crearUsuario = async(req, res)=>{
         const clave = hash;
         const respueta = await pool.query(`CALL sp_CrearUsuario('${nombre}', '${usuario}', '${clave}');`);
         if (respueta[0].affectedRows == 1){
+            let msg = `
+                Hola ${nombre}, te hemos asignado un usuario y contraseña
+                para que ingrese a el sistemas eibsoft
+                tu usuario sera: ${usuario}
+                tu clave sera: ${claveSinCifrar}
+            `;
+            sendEmail(msg, usuario, "Creacion de cuenta eibsoft")
             success(req, res, 201,"Usuario creado");
         }else{
             error(req, res, 400, "No se pudo agregar el nuevo usuario");    
@@ -147,6 +155,28 @@ const logueoUsuario = async (req, res) => {
 const validarToken = (req, res) => {
     success(req, res, 200, {"token":"El token es valido"});
 }
+
+const sendEmail = async (message, receiverEmail, subject) => {
+    let transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        service: "gmail",
+        secure: false,
+        auth: {
+            user: process.env.EMAILER_CORREO,
+            pass: process.env.EMAILER_CLAVE
+        }
+    })
+    let info = await transporter.sendMail({
+        from: process.env.EMAILER_CORREO,
+        to: receiverEmail,
+        subject: subject,
+        text: message
+    })
+    let msg = "Se ha enviado el correo" + info.messageId
+    mensajeConsola("puertSuccess", msg);
+}
+
+
 export {
     crearUsuario,
     mostrarUsuario,
