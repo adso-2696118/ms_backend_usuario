@@ -12,6 +12,10 @@ var _swaggerUiExpress = _interopRequireDefault(require("swagger-ui-express"));
 var _swaggerOutput = _interopRequireDefault(require("../tools/swagger-output.json"));
 // import swaggerFile from '../tools/swagger-output.json' assert { type: "json" };
 
+/**
+ * Esta es la ruta de mi proyecto
+ * @type {object}
+ */
 var ruta = (0, _express.Router)();
 ruta.use("/", _routesMain["default"]);
 ruta.use("/api", _routesUser["default"]);

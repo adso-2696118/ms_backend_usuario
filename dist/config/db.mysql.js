@@ -7,6 +7,11 @@ exports["default"] = void 0;
 var _promise = require("mysql2/promise");
 var _dotenv = require("dotenv");
 (0, _dotenv.config)();
+
+/**
+ * Sirve para conectarme a mi base de datos
+ * @type {object}
+ */
 var pool = (0, _promise.createPool)({
   host: process.env.MYSQLHOST,
   port: process.env.MYSQLPORT,

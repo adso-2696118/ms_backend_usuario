@@ -15,7 +15,7 @@ rutaUser.get("/user/:id", _controllersUser.mostrarUsuario);
 rutaUser.get("/user", _controllersUser.listarUsuario);
 
 // Post sirve para guardar o crear
-rutaUser.post("/user", _oauth.verifyToken, _controllersUser.crearUsuario);
+rutaUser.post("/user", _controllersUser.crearUsuario);
 
 // modificar
 rutaUser.put("/user", _oauth.verifyToken, _controllersUser.modificarUsuario);
@@ -25,4 +25,7 @@ rutaUser["delete"]("/user", _oauth.verifyToken, _controllersUser.eliminarUsuario
 
 // para loguearse
 rutaUser.post("/login", _controllersUser.logueoUsuario);
+
+//para validar el token
+rutaUser.post("/oauth", _oauth.verifyToken, _controllersUser.validarToken);
 var _default = exports["default"] = rutaUser;
